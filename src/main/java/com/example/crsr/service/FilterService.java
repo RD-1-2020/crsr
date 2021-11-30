@@ -18,7 +18,7 @@ public class FilterService {
         return filters;
     }
 
-    public void removeAll() {
+    public void removeAllFilters() {
         filters = new ArrayList<>();
     }
 

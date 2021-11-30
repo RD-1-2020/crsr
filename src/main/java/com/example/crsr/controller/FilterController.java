@@ -19,7 +19,7 @@ public class FilterController {
 
     @RequestMapping("/filter/removeAll")
     public String removeAllFilters() {
-        filterService.removeAll();
+        filterService.removeAllFilters();
         return "redirect:/";
     }
 }

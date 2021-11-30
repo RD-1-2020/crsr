@@ -1,15 +1,21 @@
 package com.example.crsr.entity;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.Date;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 @Entity(name = "cars")
 public class Cars {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private String id;
+    private Integer id;
+
+    @Column(name = "object_id")
+    private String objectId;
 
     @Column(name = "name")
     private String name;
@@ -20,8 +26,9 @@ public class Cars {
     @Column(name = "release_date")
     private String date;
 
-    public Cars(String id, String name, String color, String date) {
+    public Cars(Integer id, String objectId, String name, String color, String date) {
         this.id = id;
+        this.objectId = objectId;
         this.name = name;
         this.color = color;
         this.date = date;
@@ -39,6 +46,10 @@ public class Cars {
     }
 
     public String getColor() {
+        if (!Pattern.compile("^ ").matcher(color).matches()) {
+            setColor(color.trim().replaceAll("[ ]", "_"));
+        }
+
         return color;
     }
 
@@ -46,19 +57,35 @@ public class Cars {
         this.color = color;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     public String getDate() {
+        if (date == null || date.equals("")) {
+            setDate(Date.from(Instant.now()).toString());
+        }
+
         return date;
     }
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getObjectId() {
+        if (objectId == null) {
+            setObjectId(UUID.randomUUID().toString());
+        }
+
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
     }
 }

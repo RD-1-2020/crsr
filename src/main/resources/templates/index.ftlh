@@ -35,15 +35,17 @@
 <h3><a href = "/filter/removeAll">Сбросить фильтры</a></h3>
 <table border="1px">
     <tr>
-        <td><a href="/filter/id">Id></a></td>
-        <td><a href="/filter/name">name</a></td>
-        <td><a href="/filter/color">color</a></td>
+        <td><a href="/filter/Id">Id</a></td>
+        <td><a href="/filter/ObjectId">ObjectId</a></td>
+        <td><a href="/filter/name">Name</a></td>
+        <td><a href="/filter/color">Color</a></td>
         <td><a href="/filter/date">Date</a></td>
         <td>Delete from list</td>
     </tr>
     <#list carsList as car>
     <tr>
         <td>${car.id}</td>
+        <td>${car.objectId}</td>
         <td>${car.name}</td>
         <td>${car.color}</td>
         <td>${car.date}</td>

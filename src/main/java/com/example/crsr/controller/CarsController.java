@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -25,7 +24,7 @@ public class CarsController {
     }
 
     @RequestMapping("/delete/{id}")
-    public String deleteCar(@PathVariable String id) {
+    public String deleteCar(@PathVariable Integer id) {
         carService.delete(id);
         return "redirect:/";
     }
